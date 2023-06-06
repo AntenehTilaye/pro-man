@@ -1,7 +1,11 @@
 package com.ablacky.proman;
 
 import java.sql.Date;
+import java.util.Optional;
 
+import javax.swing.text.html.Option;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -22,10 +26,16 @@ public class UserRepositoryTests {
     @Test
     public void testAddNew(){
         Project project = new Project();
-        project.setTitle("Workflow Management System");
-        project.setAbout("Workflow Management System Workflow Management System Workflow Management System");
-       
-        ;
+        project.setTitle("Project and publication management");
+        project.setAbout("Project and publication management Project and publication management Project and publication management");
+        project.setStartDate(Date.valueOf("2023-05-01"));
+        project.setEndDate(Date.valueOf("2023-09-10"));
+
+        Project savedProject = repo.save(project);
+        Assertions.assertThat(savedProject).isNotNull();
+        Assertions.assertThat(savedProject.getId()).isGreaterThan(0);
     }
+
+
 
 }
