@@ -36,6 +36,12 @@ public class UserRepositoryTests {
         Assertions.assertThat(savedProject.getId()).isGreaterThan(0);
     }
 
+    @Test
+    public void testListAll(){
+        Iterable<Project> projects = repo.findAll();
+        Assertions.assertThat(projects).hasSizeGreaterThan(0);
+    }
+
 
 
 }
