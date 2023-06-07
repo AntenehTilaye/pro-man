@@ -42,6 +42,34 @@ public class UserRepositoryTests {
         Assertions.assertThat(projects).hasSizeGreaterThan(0);
     }
 
+    @Test
+    public void testGet() {
+        Integer projectId = 1;
+        Optional<Project> optionalProject = repo.findById(projectId);
+        Assertions.assertThat(optionalProject).isPresent();
 
+    }
+
+    @Test
+    public void testDelete() {
+        Integer projectId = 1;
+        repo.deleteById(projectId);
+        
+        Optional<Project> optionalProject = repo.findById(projectId);
+        Assertions.assertThat(optionalProject).isNotPresent();
+        
+    }
+
+    @Test
+    public void testUpdate() {
+        Integer projectId = 1;
+        Optional<Project> optionalProject = repo.findById(projectId);
+        Project project = optionalProject.get();
+        project.setTitle("Workflow Management System (Great Project)");
+        repo.save(project);
+
+        Project updatedProject = repo.findById(projectId).get();
+        Assertions.assertThat(updatedProject.getTitle()).isEqualTo("Workflow Management System (Great Project)");
+    }
 
 }
