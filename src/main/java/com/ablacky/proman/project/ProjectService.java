@@ -29,4 +29,12 @@ public class ProjectService {
         throw new ProjectNotFoundException("Could not find any Project with ID: "+id);
 
     }
+
+    public void delete(Integer id) throws ProjectNotFoundException{
+        Long count = repo.countById(id);
+        if(count == null || count == 0){
+            throw new ProjectNotFoundException("Could not find any Project with ID: "+id);
+        }
+        repo.deleteById(id);
+    }
 }

@@ -23,9 +23,10 @@
                 <div class="modal-content">
                     <form th:action="@{/projects/save}" method="post" th:object="${project}">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add Project</h4>
+                            <h4 class="modal-title">[[${pageTitle}]]</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
+                        <input type="hidden" th:field="*{id}">
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Title</label>
@@ -46,7 +47,7 @@
                         </div>
                         <div class="modal-footer">
                             <a href="employees" type="button" class="btn btn-default" >Cancel</a>
-                            <input type="submit" class="btn btn-success" value="Add">
+                            <input type="submit" class="btn btn-success" value="Save">
                         </div>
                     </form>
                 </div>
